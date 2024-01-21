@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="styles.css" />
+    <script>
+      function validateCookie() {
+        fetch("/csrf/validate").then((res) => {
+          if (res.status === 200 && $("img").length === 0)
+            $(".container").append(`<img src="${res.url}" alt="Cookie GIF">`);
+        });
+      }
+      $(document).ready(function () {
+        validateCookie();
+        var loginButton = $("#login-btn");
+        loginButton.on("click", (e) => {
+          const cookieType = $("#cookie-type-select").val();
+
+          $.ajax({
+            url: "/csrf/login",
+            method: "POST",
+            data: { cookieType },
+            success: function (response) {
+              $("#response").text(response);
+              validateCookie();
+            },
+          });
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <a href="/">Menu</a>
+    <div class="container">
+      <h1>SameSite cookie flag demo</h1>
+      <div>
+        <select id="cookie-type-select">
+          <option value="default">default</option>
+          <option value="strict">strict</option>
+          <option value="lax">lax</option>
+          <option value="none">none</option>
+        </select>
+        <button id="login-btn">Login</button>
+      </div>
+      <p id="response"></p>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,18 @@
+{
+  "name": "web-security-demos",
+  "version": "1.0.0",
+  "description": "Web Security Demos",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "engines": {
+    "node": "20.9.0"
+  },
+  "author": "dudisamarel",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "1.20.2",
+    "express": "4.18.2"
+  }
+}
