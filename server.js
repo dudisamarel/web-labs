@@ -1,6 +1,7 @@
 const express = require("express"),
   app = express(),
   bodyParser = require("body-parser");
+const PORT = process.env.PORT || 3030;
 
 app.use(
   bodyParser.urlencoded({
@@ -16,4 +17,4 @@ app.get("/", (req, res) => {
 
 app.use("/csrf", require("./csrf/server"));
 
-app.listen(8080, () => console.log("listening on port 8080"));
+app.listen(PORT, () => console.log(`listening on port ${PORT}`));
